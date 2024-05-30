@@ -1,0 +1,12 @@
+ul-style:
+  style: 'dash'
+ul-indent:
+  indent: 2
+line-length:
+  line_length: 120              # Line length 80 is far to short
+no-trailing-punctuation:
+  punctuation: ".,;:!。，；:"    # List of not allowed
+ol-prefix:
+  style: "one_or_ordered"       # Ordered list item prefix
+no-inline-html: false           # Allow inline HTML
+no-emphasis-as-heading: false   # Emphasis used instead of a heading

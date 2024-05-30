@@ -1,0 +1,26 @@
+name: linting
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  lint-changelog:
+    name: Lint changelog file
+    runs-on: ubuntu-latest
+    steps:
+    - name: "☁️ checkout repository"
+      uses: actions/checkout@v4
+
+    - name: "🧹 Lint markdown files"
+      uses: docker://avtodev/markdown-lint:v1 # fastest way
+      with:
+          args: '**/*.md'
+          ignore: 'node_modules vendor'
