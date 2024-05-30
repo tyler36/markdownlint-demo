@@ -4,6 +4,8 @@
     "lint:md:fix": "markdownlint-cli2 --fix"
   },
   "devDependencies": {
-    "markdownlint-cli2": "^0.13.0"
+    "markdownlint-cli2": "^0.13.0",
+    "markdownlint-cli2-formatter-codequality": "^0.0.4",
+    "markdownlint-cli2-formatter-junit": "^0.0.9"
   }
 }

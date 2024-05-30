@@ -1,0 +1,15 @@
+stages:
+  - linting
+
+markdownlint:
+  stage: linting
+  image: registry.gitlab.com/pipeline-components/markdownlint-cli2:latest
+  script:
+    - markdownlint-cli2 .
+  artifacts:
+    when: always
+    paths:
+      - logs/*
+    reports:
+      junit: logs/markdownlint-junit.xml
+      codequality: logs/markdownlint.json
