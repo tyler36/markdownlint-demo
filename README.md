@@ -20,32 +20,79 @@
 
 ### Install
 
+Here, we use the command-line package: <https://github.com/DavidAnson/markdownlint-cli2>
+
 ```shell
-npm install markdownlint --save-dev
+npm install markdownlint-cli2 --save-dev
 ```
 
-@see [VSCode extension](#vscode-extension) to automate workflow.
+- To check for errors (using `#` to _negate_ the glob):
+
+```shell
+markdownlint-cli2 '**/*.md' '#{node_modules,vendor}'
+```
+
+- To automatically fix errors:
+
+```shell
+markdownlint-cli2 '**/*.md' '#{node_modules,vendor} --fix'
+```
+
+Add helper scripts to `package.json`:
+
+```json
+  "scripts": {
+    "lint:md": "markdownlint-cli2",
+    "lint:md:fix": "markdownlint-cli2 --fix"
+  },
+```
 
 ### Checking errors
 
 There is no easy way to simply.
 
-Using Docker:
+To use a [markdownlint-cli2](https://hub.docker.com/r/davidanson/markdownlint-cli2) docker image:
 
 ```shell
-docker run --rm \
-    -v "$(pwd)/README.md:/README.md:ro" \
-    avtodev/markdown-lint:v1 \
-    /README.md
+docker run -v $PWD:/workdir davidanson/markdownlint-cli2:latest "**/*.md" "#node_modules"
 ```
 
 ## Configuration
 
-May be one of the following files:
+`markdownlint-cli2` can use standard markdownlint configuration files.
+However, `cli2` versions allow for complete control of markdownlint-cli2 and the vscode extension.
+@see <https://github.com/DavidAnson/markdownlint-cli2#configuration>
 
+The order of preference is:
+
+- cli2: `.markdownlint-cli2.jsonc`, `.markdownlint-cli2.yaml`, `.markdownlint-cli2.cjs`
 - JSON: `.markdownlint.jsonc`, `.markdownlint.json`
 - YML: `.markdownlint.yaml`, `.markdownlint.yml`
-- JavaScript: `.markdownlint.cjs`, `.markdownlint.mjs`
+- JavaScript: `.markdownlint-cli2.mjs`, `.markdownlint.cjs`, `.markdownlint.mjs`
+
+```yaml
+# .markdownlint-cli2.yml
+config:
+  ul-style:
+    style: 'dash'
+  ul-indent:
+    indent: 2
+  line-length:
+    line_length: 120 # Line length 80 is far to short
+  no-trailing-punctuation:
+    punctuation: '.,;:!。，；:' # List of not allowed
+  ol-prefix:
+    style: 'one_or_ordered' # Ordered list item prefix
+  no-inline-html: false # Allow inline HTML
+  no-emphasis-as-heading: false # Emphasis used instead of a heading
+
+# Define glob expressions to use (only valid at root)
+globs:
+  - "**/*.md"
+
+# Ignore files referenced by .gitignore (only valid at root)
+gitignore: true
+```
 
 ```yml
 # .markdownlint.yml

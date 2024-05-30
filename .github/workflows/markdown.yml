@@ -20,7 +20,4 @@ jobs:
       uses: actions/checkout@v4
 
     - name: "🧹 Lint markdown files"
-      uses: docker://avtodev/markdown-lint:v1 # fastest way
-      with:
-          args: '**/*.md'
-          ignore: 'node_modules vendor'
+      uses: DavidAnson/markdownlint-cli2-action@v16
