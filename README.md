@@ -130,7 +130,7 @@ no-emphasis-as-heading: false   # Emphasis used instead of a heading
 ## Others
 
 ### Plugins
-
+https://www.npmjs.com/search?q=keywords:markdown-it-plugin
 [Additional plugins](https://www.npmjs.com/search?q=keywords:markdown-it-plugin)
 
 ### Online demo
