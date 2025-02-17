@@ -6,6 +6,6 @@
   "devDependencies": {
     "markdownlint-cli2": "^0.17.2",
     "markdownlint-cli2-formatter-codequality": "^0.0.5",
-    "markdownlint-cli2-formatter-junit": "^0.0.9"
+    "markdownlint-cli2-formatter-junit": "^0.0.12"
   }
 }
