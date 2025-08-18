@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: "☁️ checkout repository"
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
 
     - name: "🧹 Lint markdown files"
       uses: DavidAnson/markdownlint-cli2-action@v20
